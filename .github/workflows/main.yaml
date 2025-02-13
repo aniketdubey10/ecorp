@@ -22,7 +22,7 @@ jobs:
           TAG="ecorp"
 
           # Update the image in the existing deployment file
-          sed -i "/name: user-service/{n;s|image: .*|image: $GCP_IN_REPO_LOCATION/$GCP_PROJECT_ID/$GCP_REPO_NAME:$TAG|;}" manifests/test-deployment.yaml
+          sed -i "/name: user-service/{n;s|image: .*|image: $GCP_IN_REPO_LOCATION/$GCP_PROJECT_ID/$GCP_REPO_NAME:$TAG|}" manifests/test-deployment.yaml
           
           # Display the updated file for verification
           cat manifests/test-deployment.yaml
