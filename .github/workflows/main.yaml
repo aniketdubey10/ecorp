@@ -19,7 +19,7 @@ jobs:
           GCP_IN_REPO_LOCATION="asia-south1-docker.pkg.dev"
           GCP_PROJECT_ID="redacto-staging-445807"
           GCP_REPO_NAME="redacto-repo/userservice-staging"
-          TAG="new-tag"
+          TAG="ecorp"
 
           # Update the image in the existing deployment file
           sed -i "/name: user-service/{n;s|image: .*|image: $GCP_IN_REPO_LOCATION/$GCP_PROJECT_ID/$GCP_REPO_NAME:$TAG|;}" manifests/test-deployment.yaml
