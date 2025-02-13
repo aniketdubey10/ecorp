@@ -1,0 +1,32 @@
+name: Test Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Update Image in Deployment
+        run: |
+          # Define the variables for the new image
+          GCP_IN_REPO_LOCATION="asia-south1-docker.pkg.dev"
+          GCP_PROJECT_ID="redacto-staging-445807"
+          GCP_REPO_NAME="redacto-repo/userservice-staging"
+          TAG="new-tag"
+
+          # Update the image in the existing deployment file
+          sed -i "/name: user-service/{n;s|image: .*|image: $GCP_IN_REPO_LOCATION/$GCP_PROJECT_ID/$GCP_REPO_NAME:$TAG|;}" manifests/test-deployment.yaml
+          
+          # Display the updated file for verification
+          cat manifests/test-deployment.yaml
+
+      - name: Check Deployment Status
+        run: |
+          echo "Deployment updated successfully."
