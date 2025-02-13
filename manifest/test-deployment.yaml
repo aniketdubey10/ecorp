@@ -1,0 +1,15 @@
+
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: user-service
+     namespace: redacto
+   spec:
+     template:
+       spec:
+         containers:
+           - name: user-service
+             image: asia-south1-docker.pkg.dev/redacto-staging-445807/redacto-repo/userservice-staging:new-tag
+           - name: cloud-sql-proxy
+             image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.14.1
+   
